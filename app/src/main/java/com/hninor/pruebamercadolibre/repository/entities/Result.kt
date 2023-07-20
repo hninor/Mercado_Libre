@@ -1,5 +1,5 @@
 package com.hninor.pruebamercadolibre.repository.entities
 
-class Result {
+data class Result (var name: String)
 
-}
+
