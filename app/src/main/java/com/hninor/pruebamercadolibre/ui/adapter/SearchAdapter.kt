@@ -9,44 +9,42 @@ import com.hninor.pruebamercadolibre.repository.entities.Result
 class SearchAdapter() :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var tweets: MutableList<Result>? = null
+    var results: MutableList<Result>? = null
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
 
-
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-            return SearchViewHolder(
-                LayoutSearchItemBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return SearchViewHolder(
+            LayoutSearchItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
             )
-        }
+        )
+    }
 
     override fun getItemCount(): Int {
-        return (tweets?.size ?: 0) + 1
+        return (results?.size ?: 0)
     }
 
 
     @Suppress("UNCHECKED_CAST")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        (holder as? SearchViewHolder)?.bind(tweets!![position])
+        (holder as? SearchViewHolder)?.bind(results!![position])
 
     }
 
     fun addMoreTweet(tweets: List<Result>?) {
-        if (tweets.isNullOrEmpty() || this.tweets.isNullOrEmpty()) {
+        if (tweets.isNullOrEmpty() || this.results.isNullOrEmpty()) {
             return
         }
         val newTweetSize = tweets.size
-        val oldTweetsSize = this.tweets!!.size
-        this.tweets!!.addAll(tweets)
+        val oldTweetsSize = this.results!!.size
+        this.results!!.addAll(tweets)
         notifyItemRangeInserted(oldTweetsSize + 1, newTweetSize)
     }
 
