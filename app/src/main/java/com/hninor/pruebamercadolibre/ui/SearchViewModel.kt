@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 
 
 private const val PAGE_RESULT_COUNT = 100
+
 class SearchViewModel(val repository: SearchRepository) : ViewModel() {
 
     val result: MutableLiveData<List<com.hninor.pruebamercadolibre.repository.entities.Result>> by lazy {
@@ -16,8 +17,11 @@ class SearchViewModel(val repository: SearchRepository) : ViewModel() {
 
     private var allResults: List<com.hninor.pruebamercadolibre.repository.entities.Result>? = null
 
+    val navigateDetail = MutableLiveData<Boolean>()
+    var query: String = ""
+    lateinit var resultForDetail: com.hninor.pruebamercadolibre.repository.entities.Result
     fun search(query: String) {
-
+        this.query = query
         viewModelScope.launch {
             val response = repository.fetchResults(query)
             allResults = response.results
@@ -28,5 +32,14 @@ class SearchViewModel(val repository: SearchRepository) : ViewModel() {
                 result.value = allResults
             }
         }
+    }
+
+    fun showDetail(result: com.hninor.pruebamercadolibre.repository.entities.Result) {
+        resultForDetail = result
+        navigateDetail.value = true
+    }
+
+    fun refresh() {
+        search(query)
     }
 }

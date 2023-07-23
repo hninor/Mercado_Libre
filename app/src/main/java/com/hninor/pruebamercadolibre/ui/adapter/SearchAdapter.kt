@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hninor.pruebamercadolibre.databinding.LayoutSearchItemBinding
 import com.hninor.pruebamercadolibre.repository.entities.Result
 
-class SearchAdapter() :
+class SearchAdapter(val clickListener: (Result) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var results: MutableList<Result>? = null
@@ -34,7 +34,7 @@ class SearchAdapter() :
     @Suppress("UNCHECKED_CAST")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        (holder as? SearchViewHolder)?.bind(results!![position])
+        (holder as? SearchViewHolder)?.bind(results!![position], clickListener)
 
     }
 

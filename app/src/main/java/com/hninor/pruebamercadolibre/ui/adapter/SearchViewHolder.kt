@@ -10,12 +10,12 @@ class SearchViewHolder(private val binding: LayoutSearchItemBinding) :
 
 
     private var imageLoader = MercadoLibreApplication.imageLoader
-    fun bind(result: Result) {
+    fun bind(result: Result, clickListener: (Result) -> Unit) {
         binding.tvTitle.text = result.title
         binding.tvPrice.text = result.price.toString()
         imageLoader.displayImage(result.thumbnail, binding.imageView)
+        binding.root.setOnClickListener { clickListener(result) }
     }
-
 
 
 }
