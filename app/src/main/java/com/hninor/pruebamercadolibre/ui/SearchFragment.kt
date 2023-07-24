@@ -48,6 +48,7 @@ class SearchFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                //throw Exception("Prueba Henry")
                 return false
             }
 
