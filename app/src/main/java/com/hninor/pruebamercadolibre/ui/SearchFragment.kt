@@ -38,11 +38,12 @@ class SearchFragment : Fragment() {
                 SearchRepository()
             )
         viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[SearchViewModel::class.java]
+        binding.searchView.isIconified = false;
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
+                    binding.swipeRefreshLayout.isRefreshing =  true
                     viewModel.search(query)
-                    return true
                 }
                 return false
             }

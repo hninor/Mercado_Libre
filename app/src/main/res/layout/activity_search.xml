@@ -42,7 +42,6 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:text="@string/buscador"
-                    android:textStyle="bold"
                     android:textColor="@color/texto_barra"
                     android:textSize="26sp"
                     app:layout_constraintBottom_toBottomOf="@+id/media_image"
