@@ -2,8 +2,10 @@ package com.hninor.pruebamercadolibre.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.appbar.MaterialToolbar
 import com.hninor.pruebamercadolibre.R
 
 class SearchActivity : AppCompatActivity() {
