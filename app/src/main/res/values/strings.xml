@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Prueba Mercado Libre</string>
     <string name="buscador">Buscador\n</string>
+    <string name="vendedor">Vendedor</string>
+    <string name="direccion">Dirección</string>
+    <string name="atributos">Atributos</string>
 </resources>
