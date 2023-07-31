@@ -11,6 +11,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.hninor.pruebamercadolibre.MercadoLibreApplication
 import com.hninor.pruebamercadolibre.R
 import com.hninor.pruebamercadolibre.databinding.FragmentDetailBinding
@@ -32,7 +35,7 @@ class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
     private var imageLoader = MercadoLibreApplication.imageLoader
-
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,6 +47,7 @@ class DetailFragment : Fragment() {
             )
         viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[SearchViewModel::class.java]
         imageLoader.displayImage(viewModel.resultForDetail.thumbnail, binding.imageView)
+        firebaseAnalytics = Firebase.analytics
         val result = viewModel.resultForDetail
         binding.tvTitle.text = result.title
         binding.tvPrice.text = renderPrice(result.price)
